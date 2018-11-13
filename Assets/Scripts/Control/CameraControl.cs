@@ -14,7 +14,7 @@ public class CameraControl : MonoBehaviour
     public int maxY = 100;
 
     private float _moveBorderSize = 10f;
-    private bool inRotate = false;
+    //private bool inRotate = false;
     private void Start()
     {
         _moveBorderSize = procentMoveBorderSize / 100 * Screen.height;
