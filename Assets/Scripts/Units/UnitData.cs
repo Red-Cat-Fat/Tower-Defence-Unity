@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class UnitData : MonoBehaviour {
-    public float healthPoints = 100f;
     public IModification modification;
+    private LifeParameters lifeParameters;
+    //private LifeParameters lifeParameters;
+
+    public void Start()
+    {
+        lifeParameters = GetComponent<LifeParameters>();
+    }
 
     public void UpdateAll()
     {
@@ -13,5 +19,9 @@ public class UnitData : MonoBehaviour {
     public void UpdateModification()
     {
         modification.UpdateMode();
+    }
+    public void UpdateLifeParameters()
+    {
+        lifeParameters.isLife();
     }
 }
