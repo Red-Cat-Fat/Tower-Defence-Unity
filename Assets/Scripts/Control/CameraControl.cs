@@ -4,17 +4,17 @@ public class CameraControl : MonoBehaviour
 {
     public float speedMoveCamera = 20f;
     public float procentMoveBorderSize = 10f;
-    public float speedScrollCamera = 4f;
+    public float speedScrollCamera = 10f;
     public float sensitivity = 1f;
     public LayerMask hitLayers;
 
     public Vector2 minimumSizeMap = new Vector2(-100, -100);
     public Vector2 maximumSizeMap = new Vector2(100, 100);
     public int minY = 10;
-    public int maxY = 100;
+    public int maxY = 60;
 
     private float _moveBorderSize = 10f;
-    //private bool inRotate = false;
+    // private bool inRotate = false;
     private void Start()
     {
         _moveBorderSize = procentMoveBorderSize / 100 * Screen.height;
