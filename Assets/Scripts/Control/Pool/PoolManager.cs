@@ -56,4 +56,63 @@ public class PoolManager : MonoBehaviour {
             pool.Add();
         }
     }
+
+    public void UpdateAllPool()
+    {
+        foreach (GameObject key in _pools.Keys)
+        {
+            Pool pool;
+            if (_pools.TryGetValue(key, out pool))
+            {
+                for (int i = 0; i < pool.Size; i++)
+                {
+                    PoolObject poolObject = pool.Get(i);
+                    if (poolObject != null)
+                    {
+                        if (poolObject.gameObject != null)
+                        {
+                            UnitData unitData = poolObject.gameObject.GetComponent<UnitData>();
+                            if (unitData != null)
+                            {
+                                unitData.UpdateAll();
+
+                                //дополнительные обновления
+                                //...
+                                //...
+                                //...
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void UpdatePool(GameObject prefab)
+    {
+        Pool pool;
+        if (_pools.TryGetValue(prefab, out pool))
+        {
+            for (int i = 0; i < pool.Size; i++)
+            {
+                PoolObject poolObject = pool.Get(i);
+                if (poolObject != null)
+                {
+                    if (poolObject.gameObject != null)
+                    {
+                        UnitData unitData = poolObject.gameObject.GetComponent<UnitData>();
+                        if (unitData != null)
+                        {
+                            unitData.UpdateAll();
+
+                            //дополнительные обновления
+                            //...
+                            //...
+                            //...
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

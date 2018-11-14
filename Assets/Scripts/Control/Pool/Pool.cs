@@ -7,6 +7,14 @@ public class Pool : MonoBehaviour {
     private Transform _container;
     private List<PoolObject> _objects = new List<PoolObject>();
 
+    public int Size
+    {
+        get
+        {
+            return _objects.Count;
+        }
+    }
+
     public Pool(GameObject prefab, Transform container)
     {
         _prefab = prefab;
@@ -36,6 +44,18 @@ public class Pool : MonoBehaviour {
         }
         obj = Add();
         return obj;
+    }
+
+    internal PoolObject Get(int index)
+    {
+        if (index < Size)
+        {
+            return _objects[index];
+        }
+        else
+        {
+            return null;
+        }
     }
 
     internal void Despawn(PoolObject poolObject)
