@@ -26,7 +26,6 @@ public class PoolManager : MonoBehaviour {
             poolObject.gameObject.SetActive(true);
             return poolObject.gameObject;
         }
-
         return GameObject.Instantiate(prefab, position, rotation);
     }
 

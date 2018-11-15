@@ -25,10 +25,18 @@ public class Pool : MonoBehaviour {
     {
         var go = GameObject.Instantiate(_prefab, _container, true);
         var poolObject = go.GetComponent<PoolObject>();
-        poolObject.Pool = this;
-        go.SetActive(false);
-        _objects.Add(poolObject);
-        return poolObject;
+        if (poolObject != null)
+        {
+            poolObject.Pool = this;
+            go.SetActive(false);
+            _objects.Add(poolObject);
+            return poolObject;
+        }
+        else
+        {
+            Debug.LogError("Object is not PoolObject, but try add in Pool");
+            return null;
+        }
     }
 
     internal PoolObject Get()
