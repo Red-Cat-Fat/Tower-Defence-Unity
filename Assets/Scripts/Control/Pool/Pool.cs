@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pool : MonoBehaviour {
+public class Pool {
     private GameObject _prefab;
     private Transform _container;
     private List<PoolObject> _objects = new List<PoolObject>();
