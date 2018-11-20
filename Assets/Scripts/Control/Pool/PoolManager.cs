@@ -21,7 +21,7 @@ public class PoolManager : MonoBehaviour {
             poolObject.transform.rotation = rotation;
             if (parent != null)
             {
-                //poolObject.transform.SetParent(parent, true);
+                poolObject.transform.SetParent(parent, true);
             }
             poolObject.gameObject.SetActive(true);
             return poolObject.gameObject;
