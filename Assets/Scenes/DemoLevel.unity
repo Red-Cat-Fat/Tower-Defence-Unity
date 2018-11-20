@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 396687713}
   - component: {fileID: 396687712}
   m_Layer: 8
-  m_Name: Build
+  m_Name: BuildBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -432,7 +432,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967039
   gridSize: 5
-  process: 1
 --- !u!1 &895879564
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,7 +458,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1516243232}
   - {fileID: 2066918003}
   m_Father: {fileID: 1974753107}
   m_RootOrder: 0
@@ -554,7 +552,7 @@ GameObject:
   - component: {fileID: 1460205033}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Plane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -664,8 +662,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 895879565}
-  m_RootOrder: 0
+  m_Father: {fileID: 1974753107}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1871606112
 GameObject:
@@ -757,6 +755,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timeFlyToEndPoint: 60
   moveEnd: {x: 0, y: 0, z: 0}
+  _moved: 1
 --- !u!195 &1871606118
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -887,6 +886,7 @@ MonoBehaviour:
   - Prefab: {fileID: 1944506474921680, guid: acf86955ecc8554418a34c8a5eb935a4, type: 2}
     Count: 50
   Score: 0
+  build: {fileID: 0}
 --- !u!4 &1974753107
 Transform:
   m_ObjectHideFlags: 0
@@ -898,6 +898,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 895879565}
+  - {fileID: 1516243232}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -928,7 +929,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 895879565}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2066918004
 MonoBehaviour:

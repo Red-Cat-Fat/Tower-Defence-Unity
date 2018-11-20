@@ -8,6 +8,7 @@ public class MoveToPoint : MonoBehaviour {
     private Vector3 _moveStart;
     private Rigidbody _rigidbody;
     private float _lifeTime = 0;
+    [SerializeField]
     private bool _moved = true;
 
     public void Awake()
@@ -22,6 +23,7 @@ public class MoveToPoint : MonoBehaviour {
     public void OnEnable()
     {
         _moveStart = transform.position;
+        _moved = true;
     }
 
     public void FixedUpdate()
@@ -56,7 +58,7 @@ public class MoveToPoint : MonoBehaviour {
     {
         if (collision.gameObject.tag != "Plane")
         {
-            _moved = true;
+            //_moved = true;
         }
     }
 }
