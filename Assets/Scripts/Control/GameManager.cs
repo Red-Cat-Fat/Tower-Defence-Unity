@@ -16,8 +16,7 @@ public class GameManager : MonoBehaviour {
     public int Score = 0;
 
     public static GameManager Instance { get; private set; }
-    public Build build;
-
+    public GameObject baseTower;
 
     private void Awake()
     {

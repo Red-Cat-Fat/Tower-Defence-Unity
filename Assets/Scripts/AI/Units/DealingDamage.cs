@@ -5,6 +5,7 @@ using UnityEngine;
 public class DealingDamage : MonoBehaviour {
     public float damagSize = 0;
     public TypeAttack typeAttack = TypeAttack.NormalType;
+    private int _team = 0;
     private Damage damage;
 	// Use this for initialization
 	void Start () {
@@ -16,7 +17,20 @@ public class DealingDamage : MonoBehaviour {
         LifeParameters lifeParameters = collision.gameObject.GetComponent<LifeParameters>();
         if (lifeParameters != null)
         {
-            lifeParameters.SetDamage(damage);
+            UnitData targetUnitData = collision.gameObject.GetComponent<UnitData>();
+            if (targetUnitData != null)
+            {
+                if (targetUnitData.team != _team)
+                {
+                    lifeParameters.SetDamage(damage);
+                    GameManager.Instance.poolManager.Despawn(this.gameObject);
+                }
+            }
         }
+    }
+
+    public void SetTeam(int team)
+    {
+        _team = team;
     }
 }

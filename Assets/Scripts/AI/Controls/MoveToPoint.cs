@@ -4,6 +4,7 @@ using UnityEngine.AI;
 public class MoveToPoint : MonoBehaviour {
     public float timeFlyToEndPoint = 1f;
     public Vector3 moveEnd;
+    public bool dieAfterFinish;
 
     private Vector3 _moveStart;
     private Rigidbody _rigidbody;
@@ -35,15 +36,19 @@ public class MoveToPoint : MonoBehaviour {
             if (_lifeTime > timeFlyToEndPoint)
             {
                 _moved = false;
+                if (dieAfterFinish)
+                {
+                    Destroy(this);
+                }
             }
         }
     }
 
-    public void MoveTo(Vector3 moveEnd)
+    public void MoveTo(Vector3 moveStart, Vector3 moveEnd)
     {
         _lifeTime = 0;
+        _moveStart = moveStart;
         this.moveEnd = moveEnd;
-        _moveStart = this.transform.localPosition;
         _moved = true;
     }
 
@@ -51,7 +56,7 @@ public class MoveToPoint : MonoBehaviour {
     {
         if (collision.gameObject.tag != "Plane")
         {
-            _moved = false;
+            //_moved = false;
         }
     }
     public void OnCollisionExit(Collision collision)

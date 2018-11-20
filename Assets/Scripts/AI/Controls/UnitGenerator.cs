@@ -40,7 +40,13 @@ public class UnitGenerator : MonoBehaviour {
                 if (unitGeneratorNode != null)
                 {
                     GameObject gameObject = unitGeneratorNode.gameObject;
-                    poolManager.Spawn(gameObject, transform.position, transform.rotation);
+                    GameObject unit = poolManager.Spawn(gameObject, transform.position, transform.rotation);
+
+                    MoveToPointByNavMesh unitMoveToPointByNavMesh = unit.GetComponent<MoveToPointByNavMesh>();
+                    if (unitMoveToPointByNavMesh != null)
+                    {
+                        unitMoveToPointByNavMesh.point = GameManager.Instance.baseTower;
+                    }
                 }
             }
         }

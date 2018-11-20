@@ -36,6 +36,10 @@ public class UnitData : MonoBehaviour {
         {
             GameManager.Instance.poolManager.Despawn(gameObject);
         }
+        if(gameObject.GetComponent<PoolObject>() == null)
+        {
+            Destroy(this);
+        }
     }
 
 
