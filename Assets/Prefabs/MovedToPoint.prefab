@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8edc06799150754d80c17a09f21beb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeFlyToEndPoint: 60
+  timeFlyToEndPoint: 10
   moveEnd: {x: 0, y: 0, z: 0}
 --- !u!114 &114474099968359450
 MonoBehaviour:
