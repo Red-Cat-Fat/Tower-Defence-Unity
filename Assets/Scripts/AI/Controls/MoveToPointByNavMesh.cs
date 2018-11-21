@@ -10,6 +10,7 @@ public class MoveToPointByNavMesh : MonoBehaviour {
 
     private NavMeshAgent _navMeshAgent;
     private bool _canMove = true;
+    public float moveSpeed = 10f;
     // Use this for initialization
     void Start()
     {
@@ -18,7 +19,7 @@ public class MoveToPointByNavMesh : MonoBehaviour {
         {
             _navMeshAgent.SetDestination(point.transform.position);
         }
-        _navMeshAgent.speed = 10;
+        _navMeshAgent.speed = moveSpeed;
     }
     void Update()
     {
@@ -47,12 +48,14 @@ public class MoveToPointByNavMesh : MonoBehaviour {
 
     public void StopMove()
     {
-        _canMove = false;
+        //_canMove = false;
+        //_navMeshAgent.speed = 0;
     }
 
     public void StartMove()
     {
         _canMove = true;
+        //_navMeshAgent.speed = moveSpeed;
     }
 
     public void SetNewPoint(GameObject newPoint)

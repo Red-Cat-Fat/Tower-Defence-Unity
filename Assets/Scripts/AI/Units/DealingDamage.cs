@@ -23,7 +23,7 @@ public class DealingDamage : MonoBehaviour {
                 if (targetUnitData.team != _team)
                 {
                     lifeParameters.SetDamage(damage);
-                    GameManager.Instance.poolManager.Despawn(this.gameObject);
+                    GameManager.Instance.poolManager.Despawn(gameObject);
                 }
             }
         }

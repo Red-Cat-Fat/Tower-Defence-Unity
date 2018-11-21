@@ -7,7 +7,8 @@ public class Gun : MonoBehaviour {
     public bool fire = true;
     public float timeReload = 1f;
     public GameObject pointGeneratorBullet;
-    private GameObject target;
+    public GameObject turret;
+    private List<GameObject> targets = new List<GameObject>();
     private PoolManager poolManager;
     private float lastFire = 0;
 
@@ -25,38 +26,48 @@ public class Gun : MonoBehaviour {
         lastFire += Time.deltaTime;
         try
         {
-                if (target != null && lastFire > timeReload)
+            GameObject target = FindTarget();
+            if (target!=null && lastFire > timeReload)
+            {
+                if (turret != null)
                 {
-                    GameObject newBullet = poolManager.Spawn(bullet, pointGeneratorBullet.transform.position, pointGeneratorBullet.transform.rotation);//Instantiate(bullet, this.transform);
+                    //Quaternion quaternion = Quaternion.AngleAxis(1, Vec)
+                    //float yRotate = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+                    //turret.transform.localRotation = new Vector3(turret.transform.localRotation.x, , turret.transform.localRotation.z);
+                    turret.transform.LookAt(target.transform.position, Vector3.up);
+                }
 
-                    MoveToPoint moveToPointBullet = newBullet.GetComponent<MoveToPoint>();
-                    if (moveToPointBullet != null)
+                GameObject newBullet = poolManager.Spawn(bullet, pointGeneratorBullet.transform.position, pointGeneratorBullet.transform.rotation);//Instantiate(bullet, this.transform);
+
+                MoveToPoint moveToPointBullet = newBullet.GetComponent<MoveToPoint>();
+                if (moveToPointBullet != null)
+                {
+                    moveToPointBullet.MoveTo(this.transform.position, target);
+                }
+
+                DealingDamage dealingDamageBullet = newBullet.GetComponent<DealingDamage>();
+                if (dealingDamageBullet != null)
+                {
+                    UnitData unitData = gameObject.GetComponent<UnitData>();
+                    if (unitData != null)
                     {
-                        moveToPointBullet.MoveTo(this.transform.position, target);
-                    }
-                    DealingDamage dealingDamageBullet = newBullet.GetComponent<DealingDamage>();
-                    if (dealingDamageBullet != null)
-                    {
-                        UnitData unitData = gameObject.GetComponent<UnitData>();
-                        if (unitData != null)
-                        {
-                            dealingDamageBullet.SetTeam(unitData.team);
-                        }
-                        else
-                        {
-                            Debug.LogWarning("Try get UnitData is faled (" + gameObject.name + ")");
-                        }
+                        dealingDamageBullet.SetTeam(unitData.team);
                     }
                     else
                     {
-                        Debug.LogWarning("Try get DealingDamage is faled (" + gameObject.name + ")");
+                        Debug.LogWarning("Try get UnitData is faled (" + gameObject.name + ")");
                     }
-                    lastFire = 0;
                 }
+                else
+                {
+                    Debug.LogWarning("Try get DealingDamage is faled (" + gameObject.name + ")");
+                }
+                lastFire = 0;
+            }
         }
         catch
         {
-            Debug.LogError("Error in target " + target.name);
+            Debug.LogError("Error in target " + targets[0].name);
         }
     }
 
@@ -71,7 +82,7 @@ public class Gun : MonoBehaviour {
             {
                 if (collisionUnitData.team != thisUnitData.team)
                 {
-                    target = collisionUnitData.gameObject;
+                    targets.Add(collisionUnitData.gameObject);
 
                     MoveToPointByNavMesh moveToPointByNavMesh = this.gameObject.GetComponent<MoveToPointByNavMesh>();
                     if (moveToPointByNavMesh != null)
@@ -88,5 +99,32 @@ public class Gun : MonoBehaviour {
                 }
             }
         }
+    }
+
+    public void OnTriggerExit(Collider other)
+    {
+        for (int i = 0; i < targets.Count; i++)
+        {
+            if (targets[i] == other.gameObject)
+            {
+                targets.RemoveAt(i);
+            }
+        }
+    }
+
+    private GameObject FindTarget()
+    {
+        for (int i = 0; i < targets.Count; i++)
+        {
+            if (!targets[i].gameObject.activeSelf)
+            {
+                targets.RemoveAt(i);
+            }
+            else
+            {
+                return targets[i];
+            }
+        }
+        return null;
     }
 }
