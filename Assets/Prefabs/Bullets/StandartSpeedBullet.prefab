@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114025009980506748}
   - component: {fileID: 54522835787288264}
   - component: {fileID: 114580601513211922}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: StandartSpeedBullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeFlyToEndPoint: 0.3
-  moveEnd: {x: 0, y: 0, z: 0}
+  moveEnd: {fileID: 0}
   dieAfterFinish: 0
   _moved: 1
 --- !u!135 &135103878085370694
