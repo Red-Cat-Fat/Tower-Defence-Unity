@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class MoveToPoint : MonoBehaviour {
     public float timeFlyToEndPoint = 1f;
-    public Vector3 moveEnd;
+    public GameObject moveEnd;
     public bool dieAfterFinish;
 
     private Vector3 _moveStart;
@@ -32,7 +32,7 @@ public class MoveToPoint : MonoBehaviour {
         _lifeTime += Time.fixedDeltaTime;
         if (_moved && _moveStart!=null && moveEnd!=null)
         {
-            _rigidbody.transform.position = Vector3.Lerp(_moveStart, moveEnd, _lifeTime / timeFlyToEndPoint);//_lifeTime * timeFlyToEndPoint);
+            _rigidbody.transform.position = Vector3.Lerp(_moveStart, moveEnd.transform.position, _lifeTime / timeFlyToEndPoint);//_lifeTime * timeFlyToEndPoint);
             if (_lifeTime > timeFlyToEndPoint)
             {
                 _moved = false;
@@ -44,7 +44,7 @@ public class MoveToPoint : MonoBehaviour {
         }
     }
 
-    public void MoveTo(Vector3 moveStart, Vector3 moveEnd)
+    public void MoveTo(Vector3 moveStart, GameObject moveEnd)
     {
         _lifeTime = 0;
         _moveStart = moveStart;

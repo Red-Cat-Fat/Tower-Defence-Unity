@@ -6,36 +6,57 @@ public class Gun : MonoBehaviour {
     public GameObject bullet;
     public bool fire = true;
     public float timeReload = 1f;
+    public GameObject pointGeneratorBullet;
     private GameObject target;
     private PoolManager poolManager;
     private float lastFire = 0;
+
     public void Start()
     {
         poolManager = GameManager.Instance.poolManager;
+        if (pointGeneratorBullet == null)
+        {
+            pointGeneratorBullet = gameObject;
+        }
     }
 
     private void Update()
     {
         lastFire += Time.deltaTime;
-        if (target != null && lastFire > timeReload)
+        try
         {
-            GameObject newBullet = poolManager.Spawn(bullet, transform.position, transform.rotation);//Instantiate(bullet, this.transform);
-
-            MoveToPoint moveToPointBullet = newBullet.GetComponent<MoveToPoint>();
-            if (moveToPointBullet != null)
-            {
-                moveToPointBullet.MoveTo(this.transform.position, target.transform.position);
-            }
-            DealingDamage dealingDamageBullet = newBullet.GetComponent<DealingDamage>();
-            if (dealingDamageBullet != null)
-            {
-                UnitData unitData = gameObject.GetComponent<UnitData>();
-                if (unitData != null)
+                if (target != null && lastFire > timeReload)
                 {
-                    dealingDamageBullet.SetTeam(unitData.team);
+                    GameObject newBullet = poolManager.Spawn(bullet, pointGeneratorBullet.transform.position, pointGeneratorBullet.transform.rotation);//Instantiate(bullet, this.transform);
+
+                    MoveToPoint moveToPointBullet = newBullet.GetComponent<MoveToPoint>();
+                    if (moveToPointBullet != null)
+                    {
+                        moveToPointBullet.MoveTo(this.transform.position, target);
+                    }
+                    DealingDamage dealingDamageBullet = newBullet.GetComponent<DealingDamage>();
+                    if (dealingDamageBullet != null)
+                    {
+                        UnitData unitData = gameObject.GetComponent<UnitData>();
+                        if (unitData != null)
+                        {
+                            dealingDamageBullet.SetTeam(unitData.team);
+                        }
+                        else
+                        {
+                            Debug.LogWarning("Try get UnitData is faled (" + gameObject.name + ")");
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Try get DealingDamage is faled (" + gameObject.name + ")");
+                    }
+                    lastFire = 0;
                 }
-            }
-            lastFire = 0;
+        }
+        catch
+        {
+            Debug.LogError("Error in target " + target.name);
         }
     }
 
@@ -57,6 +78,13 @@ public class Gun : MonoBehaviour {
                     {
                         moveToPointByNavMesh.StopMove();
                     }
+                }
+            }
+            else
+            {
+                if(thisUnitData == null)
+                {
+                    Debug.LogWarning("Try get UnitData is faled (" + gameObject.name + ")");
                 }
             }
         }

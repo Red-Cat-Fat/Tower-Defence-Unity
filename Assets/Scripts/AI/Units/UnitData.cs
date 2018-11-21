@@ -12,7 +12,7 @@ public class UnitData : MonoBehaviour {
         lifeParameters = GetComponent<LifeParameters>();
         if(lifeParameters == null)
         {
-            Debug.LogError("LifeParameters is null");
+            Debug.LogError("LifeParameters (in "+ gameObject.name +") is null");
         }
     }
 
@@ -38,7 +38,7 @@ public class UnitData : MonoBehaviour {
         }
         if(gameObject.GetComponent<PoolObject>() == null)
         {
-            Destroy(this);
+            //Destroy(this);
         }
     }
 

@@ -47,7 +47,7 @@ public class MoveToPointByNavMesh : MonoBehaviour {
 
     public void StopMove()
     {
-        //_canMove = false;
+        _canMove = false;
     }
 
     public void StartMove()
