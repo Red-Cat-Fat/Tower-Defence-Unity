@@ -139,7 +139,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeFlyToEndPoint: 10
-  moveEnd: {x: 0, y: 0, z: 0}
+  moveEnd: {fileID: 0}
+  dieAfterFinish: 0
   _moved: 1
 --- !u!114 &114474099968359450
 MonoBehaviour:

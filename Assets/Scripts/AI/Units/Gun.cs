@@ -39,6 +39,7 @@ public class Gun : MonoBehaviour {
 
                 GameObject newBullet = poolManager.Spawn(bullet, pointGeneratorBullet.transform.position, pointGeneratorBullet.transform.rotation);//Instantiate(bullet, this.transform);
 
+                Debug.Log(gameObject.name + " create bullet");
                 MoveToPoint moveToPointBullet = newBullet.GetComponent<MoveToPoint>();
                 if (moveToPointBullet != null)
                 {
