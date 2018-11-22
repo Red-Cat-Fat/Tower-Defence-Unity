@@ -55,7 +55,8 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4434876001148996}
-  m_Layer: 0
+  - component: {fileID: 135448461869160666}
+  m_Layer: 12
   m_Name: GUN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +81,6 @@ GameObject:
   - component: {fileID: 114919973942939674}
   - component: {fileID: 114858728266229682}
   - component: {fileID: 114998579736344338}
-  - component: {fileID: 135748288197168972}
   m_Layer: 0
   m_Name: StandartUnit
   m_TagString: Untagged
@@ -388,12 +388,12 @@ MonoBehaviour:
   timeReload: 1
   pointGeneratorBullet: {fileID: 1906235861845326}
   turret: {fileID: 1887168806549422}
---- !u!135 &135748288197168972
+--- !u!135 &135448461869160666
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1918339897569180}
+  m_GameObject: {fileID: 1906235861845326}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
@@ -409,7 +409,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

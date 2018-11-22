@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 114787968165249886}
   - component: {fileID: 54357924512606924}
   - component: {fileID: 114638554647990932}
+  - component: {fileID: 114226301791465086}
   m_Layer: 10
   m_Name: FireBullet
   m_TagString: Untagged
@@ -261,6 +262,17 @@ Light:
   m_UseColorTemperature: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!114 &114226301791465086
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1656600256797456}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b64e74d97f76b8a448f663a69702c5ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114443251208100128
 MonoBehaviour:
   m_ObjectHideFlags: 1
