@@ -43,7 +43,7 @@ public class Gun : MonoBehaviour {
                 MoveToPoint moveToPointBullet = newBullet.GetComponent<MoveToPoint>();
                 if (moveToPointBullet != null)
                 {
-                    moveToPointBullet.MoveTo(this.transform.position, target);
+                    moveToPointBullet.MoveTo(pointGeneratorBullet.transform.position, target);
                 }
 
                 DealingDamage dealingDamageBullet = newBullet.GetComponent<DealingDamage>();
